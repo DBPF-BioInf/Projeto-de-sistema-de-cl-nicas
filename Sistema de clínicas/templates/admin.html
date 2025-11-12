@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Administração</title>
+</head>
+<body>
+    <h1>Painel de Administração</h1>
+
+
+<h2>Usuários</h2>
+<ul>
+  <li><a href="{{ url_for('assign_user') }}">Atribuir Usuário a Clínica</a></li>
+  <li><a href="{{ url_for('admin') }}">Gerenciar Usuários</a></li>
+  <li><a href="{{ url_for('set_responsavel') }}">Definir Responsável por Clínica</a><br></li>
+</ul>
+
+<h2>Clínicas</h2>
+<ul>
+  <li><a href="{{ url_for('add_clinic') }}">Cadastrar Clínica</a></li>
+</ul>
+
+<h2>Pacientes</h2>
+<ul>
+  <li><a href="{{ url_for('add_paciente') }}">Cadastrar Paciente</a></li>
+  <li><a href="{{ url_for('admin_pacientes') }}">Gerenciar Pacientes</a></li>
+</ul>
+    
+
+    <br><br>
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Usuário</th>
+            <th>Créditos</th>
+            <th>Admin</th>
+            <th>Ações</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>
+                <form action="{{ url_for('update_credits', user_id=user.id) }}" method="POST">
+                    <input type="number" name="credits" value="{{ user.credits }}">
+                    <button type="submit">Atualizar</button>
+                </form>
+            </td>
+            <td>{{ 'Sim' if user.is_admin else 'Não' }}</td>
+            <td>
+                {% if not user.is_admin %}
+                <a href="{{ url_for('delete_user', user_id=user.id) }}" onclick="return confirm('Tem certeza?')">Deletar</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+

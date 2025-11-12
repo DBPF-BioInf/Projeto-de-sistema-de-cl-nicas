@@ -1,0 +1,11 @@
+<h1>{{ paciente.nome }}</h1>
+<p>Idade: {{ paciente.idade }}<br>
+Responsável: {{ paciente.responsavel }}</p>
+
+<h2>Opções</h2>
+<ul>
+  <li><a href="{{ url_for('montar_relatorio', paciente_id=paciente.id) }}">Montar Relatório</a></li>
+  <li><a href="{{ url_for('relatorios_anteriores', paciente_id=paciente.id) }}">Consultar Relatórios Anteriores</a></li>
+  <li><a href="{{ url_for('adicionar_teste', paciente_id=paciente.id) }}">Adicionar Teste</a></li>
+  <li><a href="{{ url_for('testes_anteriores', paciente_id=paciente.id) }}">Consultar Testes Anteriores</a></li>
+</ul>

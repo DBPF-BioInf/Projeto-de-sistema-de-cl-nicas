@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Clínica</title>
+</head>
+<body>
+    <h1>Cadastrar Clínica</h1>
+
+    <form method="POST">
+        <input type="text" name="name" placeholder="Nome da Clínica" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <h2>Clínicas existentes:</h2>
+    <ul>
+        {% for clinic in clinics %}
+            <li>{{ clinic.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('admin') }}">Voltar ao Painel Admin</a>
+</body>
+</html>

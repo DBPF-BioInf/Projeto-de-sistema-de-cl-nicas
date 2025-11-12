@@ -1,0 +1,27 @@
+<h1>Gerenciar Pacientes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Idade</th>
+      <th>Responsável</th>
+      <th>Clínica</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for paciente in pacientes %}
+    <tr>
+      <td>{{ paciente.nome }}</td>
+      <td>{{ paciente.idade }}</td>
+      <td>{{ paciente.responsavel }}</td>
+      <td>{{ paciente.clinic.nome }}</td>
+      <td>
+        <a href="{{ url_for('editar_paciente', paciente_id=paciente.id) }}">Editar</a> |
+        <a href="{{ url_for('deletar_paciente', paciente_id=paciente.id) }}" onclick="return confirm('Tem certeza?')">Excluir</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

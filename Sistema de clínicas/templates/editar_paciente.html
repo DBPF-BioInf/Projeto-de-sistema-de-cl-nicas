@@ -1,0 +1,23 @@
+<h1>Editar Paciente: {{ paciente.nome }}</h1>
+
+<form method="post">
+  Nome: <input type="text" name="nome" value="{{ paciente.nome }}"><br>
+  Idade: <input type="number" name="idade" value="{{ paciente.idade }}"><br>
+  Responsável: <input type="text" name="responsavel" value="{{ paciente.responsavel }}"><br>
+
+  Clínica:
+  <select name="clinic">
+    {% for clinic in clinics %}
+      <option value="{{ clinic.id }}" {% if clinic.id == paciente.clinic_id %}selected{% endif %}>{{ clinic.nome }}</option>
+    {% endfor %}
+  </select><br>
+
+  Profissionais:
+  <select name="profissionais" multiple>
+    {% for user in users %}
+      <option value="{{ user.id }}" {% if user in paciente.profissionais %}selected{% endif %}>{{ user.username }}</option>
+    {% endfor %}
+  </select><br>
+
+  <button type="submit">Salvar</button>
+</form>

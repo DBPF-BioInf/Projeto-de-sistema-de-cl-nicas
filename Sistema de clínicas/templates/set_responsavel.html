@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Definir Responsável</title>
+</head>
+<body>
+    <h1>Definir Responsável por Clínica</h1>
+
+    <form method="POST">
+        <label for="user_id">Usuário:</label>
+        <select name="user_id" required>
+            {% for user in users %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="clinic_id">Clínica:</label>
+        <select name="clinic_id" required>
+            {% for clinic in clinics %}
+                <option value="{{ clinic.id }}">{{ clinic.nome }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Atribuir Responsável</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('admin') }}">Voltar ao painel</a>
+</body>
+</html>

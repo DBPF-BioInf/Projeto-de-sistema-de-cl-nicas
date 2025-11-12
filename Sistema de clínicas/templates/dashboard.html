@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Bem-vindo, {{ current_user.username }}!</h1>
+    <p>Seus créditos: {{ current_user.credits }}</p>
+
+    <a href="{{ url_for('tools') }}">Acessar Ferramentas</a><br>
+    <a href="{{ url_for('meus_pacientes') }}">Meus Pacientes</a><br>
+    {% if current_user.is_admin %}
+    <a href="{{ url_for('admin') }}">Painel de Administração</a><br>
+    {% endif %}
+    <a href="{{ url_for('logout') }}">Sair</a>
+</body>
+</html>
